@@ -19,5 +19,15 @@ public class TestIdApiHandler extends ApiHandler<TestIdDTO> {
 		return response;
 
 	}
+	public ApiResponseDTO<TestIdDTO> guardarTestId(String nombre) {
+		TestIdDTO dto = new TestIdDTO();
+		dto.setNombre(nombre);
+		String remotePath = "http://localhost:8080/api/v1.0/testid/guardar";
+		String responseJsonStr = super.consumeREST(dto, HttpMethod.POST, remotePath);
+		ErrorJsonHandler<TestIdDTO> jsonHandler = new ErrorJsonHandler<TestIdDTO>(dto);
+		ApiResponseDTO<TestIdDTO> response = jsonHandler.getServerResponse(responseJsonStr);
+		return response;
+
+	}
 
 }

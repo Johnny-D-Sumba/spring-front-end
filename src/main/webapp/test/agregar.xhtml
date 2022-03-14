@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/layout.xhtml">
+
+	<ui:define name="title">Agregar</ui:define>
+	<ui:define name="content">
+		<h:form id="frm" update="growl">
+			<p:growl id="growl" sticky="false" life="5000" showDetail="false"
+				autoUpdate="true" />
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel for="txtId" value="Nombre: " />
+				<p:inputText id="txtId" value="#{testBean.testIdDto.id}"
+					required="true" requiredMessage="Ingrese el nombre del Test" />
+
+			</h:panelGrid>
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:commandButton value="Agregar" icon="pi pi-check"
+				update="growl"
+					actionListener="#{testBean.guardar}" />
+			</h:panelGrid>
+			<div>Resultado: #{testBean.testIdDto.nombre}</div>
+			<script>
+				//<![CDATA[
+
+				//]]>
+			</script>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

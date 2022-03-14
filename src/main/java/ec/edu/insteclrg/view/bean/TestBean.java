@@ -43,5 +43,16 @@ public class TestBean {
 		}
 		PrimeFaces.current().ajax().update("frm", "frm:growl");
 	}
+	public void guardar() {
+		ApiResponseDTO<TestIdDTO> result = handler.guardarTestId(testIdDto.getNombre());
+		if (result.isSuccess()) {
+			testIdDto = result.getResult();
+			Mensajes.addMsg(MensajesTipo.INFORMACION, "Guardado correctamente: " + result.getResult().getNombre());
+		} else {
+			testIdDto.setNombre("");
+			Mensajes.addMsg(MensajesTipo.ERROR, "Error: " + result.getError());
+		}
+		PrimeFaces.current().ajax().update("frm", "frm:growl");
+	}
 
 }
